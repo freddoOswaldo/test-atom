@@ -27,11 +27,12 @@ jobs:
         run: npm run build
       # - name: Test
       #   run: npm run test
-      - name: Deploy production to Netlify
-        uses: South-Paw/action-netlify-deploy@v1.2.0
+      - name: Wait for Render Deployment
+        uses: bounceapp/render-action@0.6.0
         with:
+          render-token: ${{ secrets.RENDER_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
-          build-dir: "./dist"
-          comment-on-commit: true
+          service-id: srv-xxxxxxxxxxxxxxxxxxxx
+          retries: 20
+          wait: 16000
+          sleep: 30000
