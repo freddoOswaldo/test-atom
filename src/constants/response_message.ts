@@ -8,6 +8,8 @@ const messages = {
   SUCCESS_UPDATE_TASK: "Tarea actualizada exitosamente",
   SUCCESS_DELETE_TASK: "Tarea eliminada exitosamente",
   SUCCESS_FIND_TASKS: "Tareas encontradas exitosamente",
+  INVALID_STATUS: "El estado de la tarea es invalido",
+  INVALID_BODY: "El cuerpo de la peticion es invalido",
 };
 
 export default messages;

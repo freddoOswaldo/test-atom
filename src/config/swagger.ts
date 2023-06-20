@@ -91,6 +91,16 @@ const options: Options = {
                 },
               },
             },
+            400: {
+              description: "Bad Request",
+              content: {
+                "application/json": {
+                  schema: {
+                    $ref: "#/definitions/Response",
+                  },
+                },
+              },
+            },
           },
         },
       },
@@ -145,6 +155,16 @@ const options: Options = {
             },
             404: {
               description: "Not Found",
+              content: {
+                "application/json": {
+                  schema: {
+                    $ref: "#/definitions/Response",
+                  },
+                },
+              },
+            },
+            400: {
+              description: "Bad Request",
               content: {
                 "application/json": {
                   schema: {

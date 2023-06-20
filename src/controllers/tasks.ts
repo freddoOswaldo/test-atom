@@ -4,6 +4,7 @@ import { Task } from "../models/task";
 import { ResponseHttp } from "../models/response_http";
 import { HttpCodes } from "../enums/http_codes";
 import messages from "../constants/response_message";
+import { isValidStatus } from "../utils/taskUtils";
 
 export const findAllTasks = async (
   _req: Request,
@@ -44,7 +45,20 @@ export const insertTask = async (
   res: Response<ResponseHttp<Task[]>>
 ) => {
   try {
+    if (!req.body || Object.entries(req.body).length === 0)
+      return res.status(HttpCodes.BAD_REQUEST).json({
+        message: messages.INVALID_BODY,
+        code: HttpCodes.BAD_REQUEST,
+      });
+
     const { title, description, status } = req.body;
+
+    if (!isValidStatus(status))
+      return res.status(HttpCodes.BAD_REQUEST).json({
+        message: messages.INVALID_STATUS,
+        code: HttpCodes.BAD_REQUEST,
+      });
+
     const taskData: Task = {
       title,
       description,
@@ -75,7 +89,20 @@ export const updateTask = async (
 ) => {
   try {
     const { taskId } = req.params;
+    if (!req.body || Object.entries(req.body).length === 0)
+      return res.status(HttpCodes.BAD_REQUEST).json({
+        message: messages.INVALID_BODY,
+        code: HttpCodes.BAD_REQUEST,
+      });
+
     const { title, description, status } = req.body;
+
+    if (!isValidStatus(status))
+      return res.status(HttpCodes.BAD_REQUEST).json({
+        message: messages.INVALID_STATUS,
+        code: HttpCodes.BAD_REQUEST,
+      });
+
     const taskData: Task = { title, description, status };
 
     const taskRef = db.collection("tasks").doc(taskId);
