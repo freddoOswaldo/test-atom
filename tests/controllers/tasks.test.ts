@@ -1,10 +1,11 @@
 import request from "supertest";
-import app from "../../src/index";
 import { HttpCodes } from "../../src/enums/http_codes";
 import db from "../../src/config/firebase";
 import { Task } from "../../src/models/task";
 import messages from "../../src/constants/response_message";
 import { StatusTask } from "../../src/enums/status_task";
+import express from "express";
+import routerTask from "../../src/routers/tasks";
 
 const taskMock = {
   title: "Tarea 10",
@@ -15,6 +16,20 @@ const taskMock = {
 const APLICATION_JSON = "application/json";
 
 const uri = "/v1/tasks";
+
+const app = express();
+
+let server: any;
+
+beforeAll(() => {
+  app.use(express.json());
+  app.use("/v1", routerTask);
+  server = app.listen(4000);
+});
+
+afterAll(() => {
+  server.close();
+});
 
 describe("consulta de tareas", () => {
   it("debe devolver un listado de tareas", async () => {
