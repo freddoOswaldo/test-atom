@@ -3,9 +3,10 @@ import db from "../config/firebase";
 import { Task } from "../models/task";
 import { ResponseHttp } from "../models/response_http";
 import { HttpCodes } from "../enums/http_codes";
+import messages from "../constants/response_message";
 
 export const findAllTasks = async (
-  req: Request,
+  _req: Request,
   res: Response<ResponseHttp<Task[]>>
 ) => {
   try {
@@ -25,14 +26,14 @@ export const findAllTasks = async (
     const response: ResponseHttp<Task[]> = {
       data: tasks,
       code: HttpCodes.OK,
-      message: "Consulta exitosa",
+      message: messages.SUCCESS_FIND_TASKS,
     };
 
     res.status(HttpCodes.OK).json(response);
   } catch (error) {
-    console.error("Error fetching tasks:", error);
+    console.log("Error fetching tasks:", error);
     res.status(HttpCodes.INTERNAL_SERVER_ERROR).json({
-      message: "Ocurrio un error al obtener las tareas",
+      message: messages.ERROR_FIND_TASKS,
       code: HttpCodes.INTERNAL_SERVER_ERROR,
     });
   }
@@ -55,14 +56,14 @@ export const insertTask = async (
 
     const response: ResponseHttp<Task[]> = {
       code: HttpCodes.OK,
-      message: "Se inserto el task exitosamente",
+      message: messages.SUCCESS_CREATE_TASK,
     };
 
     res.status(HttpCodes.OK).json(response);
   } catch (error) {
-    console.error("Error adding task:", error);
+    console.log("Error adding task:", error);
     res.status(HttpCodes.INTERNAL_SERVER_ERROR).json({
-      message: "Ocurrio un error al insertar la tarea",
+      message: messages.ERROR_CREATE_TASK,
       code: HttpCodes.INTERNAL_SERVER_ERROR,
     });
   }
@@ -78,18 +79,25 @@ export const updateTask = async (
     const taskData: Task = { title, description, status };
 
     const taskRef = db.collection("tasks").doc(taskId);
+
+    if (!(await taskRef.get()).exists)
+      return res.status(HttpCodes.NOT_FOUND).json({
+        message: messages.TASK_NOT_FOUND,
+        code: HttpCodes.NOT_FOUND,
+      });
+
     await taskRef.set(taskData, { merge: true });
 
     const response: ResponseHttp<Task[]> = {
       code: HttpCodes.OK,
-      message: "Se actualizo el task exitosamente",
+      message: messages.SUCCESS_UPDATE_TASK,
     };
 
     res.status(HttpCodes.OK).json(response);
   } catch (error) {
-    console.error("Error updating task:", error);
+    console.log("Error updating task:", error);
     res.status(HttpCodes.INTERNAL_SERVER_ERROR).json({
-      message: "Ocurrio un error al actualizar la tarea",
+      message: messages.ERROR_UPDATE_TASK,
       code: HttpCodes.INTERNAL_SERVER_ERROR,
     });
   }
@@ -103,19 +111,26 @@ export const deleteTask = async (
     const { taskId } = req.params;
 
     const taskRef = db.collection("tasks").doc(taskId);
+
+    if (!(await taskRef.get()).exists)
+      return res.status(HttpCodes.NOT_FOUND).json({
+        message: messages.TASK_NOT_FOUND,
+        code: HttpCodes.NOT_FOUND,
+      });
+
     await taskRef.delete();
 
     const response: ResponseHttp<string> = {
       code: HttpCodes.OK,
-      message: "Se elimino el task exitosamente",
+      message: messages.SUCCESS_DELETE_TASK,
       data: taskId,
     };
 
     res.status(HttpCodes.OK).json(response);
   } catch (error) {
-    console.error("Error deleting task:", error);
+    console.log("Error deleting task:", error);
     res.status(HttpCodes.INTERNAL_SERVER_ERROR).json({
-      message: "Ocurrio un error al eliminar la tarea",
+      message: messages.ERROR_DELETE_TAKS,
       code: HttpCodes.INTERNAL_SERVER_ERROR,
     });
   }
