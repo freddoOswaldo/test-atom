@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./build/index.js",
+    "start": "node ./dist/index.js",
     "dev": " npx ts-node-dev --respawn --transpile-only --debug ./src/index.ts",
     "build": "tsc",
     "test": "jest --coverage",
