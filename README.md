@@ -24,6 +24,11 @@ Esta API proporciona endpoints para administrar tareas. Permite crear, obtener, 
 1. Ejecuta la API: `npm run dev`
 2. Abre tu navegador y ve a `http://localhost:3002`
 
+## test
+
+- Ejecuta los test: `npm run test`
+- Revisa el coverage: `npm run coverage`
+
 ## Documentación de la API
 
 Puedes encontrar la documentación completa de la API en [https://api-r2jxl7pmpq-uc.a.run.app/api-docs/#/](https://api-r2jxl7pmpq-uc.a.run.app/api-docs/#/). Aquí encontrarás detalles sobre los endpoints disponibles, los parámetros aceptados y las respuestas esperadas.
