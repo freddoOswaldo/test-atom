@@ -34,6 +34,8 @@ Si deseas probar la API en tiempo real, puedes utilizar el siguiente enlace:
 
 [https://api-r2jxl7pmpq-uc.a.run.app/](https://api-r2jxl7pmpq-uc.a.run.app/)
 
+La se encuentra alojada en Firebase functions.
+
 Asegúrate de seguir las instrucciones proporcionadas en la documentación para realizar las solicitudes correctas y obtener respuestas válidas.
 
 ## Endpoints
@@ -70,4 +72,4 @@ Devuelve la documentación interactiva de la API generada con Swagger.
 
 ## Contacto
 
-Si tienes alguna pregunta, puedes contactarme a través de [correo electrónico] o [redes sociales].
+Si tienes alguna pregunta, puedes contactarme a través de [freddyon18@gmail.com] o [https://www.linkedin.com/in/freddy-ayon-castillo/].
