@@ -6,12 +6,6 @@ name: Node.js Package
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
-permissions:
-  contents: read
-  pages: write
-  id-token: write
 
 jobs:
   build:
@@ -30,5 +24,4 @@ jobs:
         with:
           branch: gh-pages
           folder: dist
-          clean: true
           token: ${{ secrets.GITHUB_TOKEN }}
