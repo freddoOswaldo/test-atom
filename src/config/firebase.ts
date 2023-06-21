@@ -6,7 +6,7 @@ import { firestore } from "firebase-admin";
 dotenv.config();
 
 initializeApp({
-  credential: cert(path.join(__dirname, process.env.FIREBASE_FILE as string)),
+  credential: cert(path.join(__dirname, process.env.DATABASE_FILE as string)),
 });
 
 const db = firestore();

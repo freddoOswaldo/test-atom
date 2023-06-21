@@ -4,7 +4,7 @@ import { StatusTask } from "../enums/status_task";
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.LOCAL_PORT || 3000;
 
 const options: Options = {
   definition: {
@@ -20,7 +20,14 @@ const options: Options = {
       },
     },
     schemes: ["http", "https"],
-    servers: [{ url: `http://localhost:${PORT}/v1` }],
+    servers: [
+      {
+        url:
+          process.env.NODE_ENV === "production"
+            ? "https://api-r2jxl7pmpq-uc.a.run.app/v1"
+            : `http://localhost:${PORT}/v1`,
+      },
+    ],
     basePath: "/v1",
     consumes: ["application/json"],
     produces: ["application/json"],
