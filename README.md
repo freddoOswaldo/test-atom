@@ -29,20 +29,6 @@ Esta API proporciona endpoints para administrar tareas. Permite crear, obtener, 
 - Ejecuta los test: `npm run test`
 - Revisa el coverage: `npm run coverage`
 
-## Documentación de la API
-
-Puedes encontrar la documentación completa de la API en [https://api-r2jxl7pmpq-uc.a.run.app/api-docs/#/](https://api-r2jxl7pmpq-uc.a.run.app/api-docs/#/). Aquí encontrarás detalles sobre los endpoints disponibles, los parámetros aceptados y las respuestas esperadas.
-
-## Pruebas del API
-
-Si deseas probar la API en tiempo real, puedes utilizar el siguiente enlace:
-
-[https://api-r2jxl7pmpq-uc.a.run.app/](https://api-r2jxl7pmpq-uc.a.run.app/)
-
-La se encuentra alojada en Firebase functions.
-
-Asegúrate de seguir las instrucciones proporcionadas en la documentación para realizar las solicitudes correctas y obtener respuestas válidas.
-
 ## Endpoints
 
 ### Obtener todas las tareas
